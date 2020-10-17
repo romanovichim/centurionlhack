@@ -1,0 +1,5 @@
+api - our server app - api
+parkingdetection - detect parking, detect if parking is free
+try - example for our api - hardcode for speed
+facepixel - blur face for legal
+pretrained weights can be found here https://github.com/matterport/Mask_RCNN/
