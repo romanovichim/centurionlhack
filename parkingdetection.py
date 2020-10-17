@@ -176,7 +176,7 @@ def detectparking():
         if free_space:
             # Write SPACE AVAILABLE!! at the top of the screen
             font = cv2.FONT_HERSHEY_DUPLEX
-            cv2.putText(frame, f"Parking:", (10, 150), font, 1.0, (0, 255, 0), 2, cv2.FILLED)
+            cv2.putText(frame, f"Parking:", (10, 100), font, 1.0, (0, 255, 0), 2, cv2.FILLED)
 
     #cvshow(frame)
     READY_IMG = os.path.join(IMAGE_DIR,"ready.jpg")
