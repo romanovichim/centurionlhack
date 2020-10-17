@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import base64
 import os , io , sys
-
+from facepixel import pixelfaces
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
@@ -31,7 +31,22 @@ def test():
     else:
         return jsonify({'error': 'not allowed extension'}), 400
 
+#For test take image returns image
+@app.route('/api/blurface', methods=['POST'])
+def blurface():
+    # print(request.files , file=sys.stderr)
+    file = request.files['image'] ## byte file
+    if file and allowed_file(file.filename):
+        image = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+        #image transformation here
+        image = pixelfaces(image)
+        image_content = cv2.imencode('.jpg', image)[1].tostring()
+        encoded_image = base64.encodestring(image_content)
+        to_send = 'data:image/jpg;base64, ' + str(encoded_image, 'utf-8')
+        return jsonify({'status': to_send})
 
+    else:
+        return jsonify({'error': 'not allowed extension'}), 400
 
 
 if __name__ == '__main__':
