@@ -1,7 +1,7 @@
 from flask import Flask,render_template,send_from_directory, request, redirect, url_for
 import os  
 from pathlib import Path
-#from parkingdetection import detectparking
+from parkingdetection import detectparking
 
 ROOT_DIR = Path(".")
 UPLOAD_FOLDER = os.path.join(ROOT_DIR, "images")
@@ -20,7 +20,7 @@ def start_page():
 @app.route('/main', methods=['GET', 'POST']) 
 def main():
     if request.method == 'POST':
-        #detectparking()
+        detectparking()
         #выгружаем картинку
         filen = "ready.jpg"
         filename = os.path.join(app.config['UPLOAD_FOLDER'], filen)
